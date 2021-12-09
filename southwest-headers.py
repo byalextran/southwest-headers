@@ -5,6 +5,7 @@ import json
 import time
 import re
 import sys
+import os
 from pathlib import Path
 from seleniumwire import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -21,7 +22,7 @@ chrome_options = Options()
 chrome_options.headless = True
 chrome_options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36')
 
-driver = webdriver.Chrome(options=chrome_options)
+driver = webdriver.Chrome(os.getcwd() + "/chromedriver", options=chrome_options)
 driver.scopes = [ "page\/check-in" ]    # only capture request URLs matching this regex
 
 driver.get("https://mobile.southwest.com/check-in")
