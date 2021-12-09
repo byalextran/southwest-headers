@@ -16,7 +16,7 @@ from selenium.webdriver.support import expected_conditions as EC
 confirmation_number = sys.argv[1]
 first_name = sys.argv[2]
 last_name = sys.argv[3]
-output_dir = sys.argv[4]
+output_file = sys.argv[4]
 
 chrome_options = Options()
 chrome_options.headless = True
@@ -47,7 +47,7 @@ for key in headers:
         southwest_headers[key] = headers[key]
 
 # save headers
-with open(output_dir + "/southwest_headers.json", "w") as json_file:
+with open(output_file, "w") as json_file:
     json.dump(southwest_headers, json_file)
 
 driver.quit()
