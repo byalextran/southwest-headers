@@ -4,8 +4,10 @@
 import json
 import time
 import re
-import sys
 import os
+import random
+import string
+import sys
 from pathlib import Path
 from seleniumwire import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -13,13 +15,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-confirmation_number = sys.argv[1]
-first_name = sys.argv[2]
-last_name = sys.argv[3]
-output_file = sys.argv[4]
+confirmation_number = ''.join(random.choices(string.ascii_uppercase, k=6))
+first_name = ''.join(random.choices(string.ascii_lowercase, k=random.randrange(4,10))).capitalize()
+last_name = ''.join(random.choices(string.ascii_lowercase, k=random.randrange(4,10))).capitalize()
+output_file = sys.argv[1] if len(sys.argv) > 1 else "southwest_headers.json"
 
 chrome_options = Options()
 chrome_options.headless = True
+
+# the headless option adds HeadlessChrome to the user agent which causes southwest to return invalid headers. so need to set a user agent that appears like a normal web browser.
 chrome_options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36')
 
 driver = webdriver.Chrome(os.getcwd() + "/chromedriver", options=chrome_options)
@@ -39,6 +43,7 @@ element.submit()
 # give the form time to submit before checking headers
 time.sleep(10)
 
+# content-type is a required header but not included in the request headers so we'll manually add it here.
 southwest_headers = { "content-type": "application/json" }
 headers = driver.requests[0].headers
 for key in headers:
