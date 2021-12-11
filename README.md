@@ -11,7 +11,7 @@ Working on Ubuntu 20.04 hosted by DigitalOcean. YMMV.
 ## Installation
 
 ```
-git clone https://github.com/byalextran/southwest-headers`
+git clone https://github.com/byalextran/southwest-headers
 cd southwest-headers
 
 pip3 install virtualenv
