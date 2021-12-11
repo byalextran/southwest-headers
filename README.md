@@ -39,18 +39,23 @@ Modify ChromeDriver so Southwest doesn't detect Selenium. [Huge hat tip](https:/
 
 ## Usage
 
- `env/bin/python southwest-headers.py $PWD/southwest_headers.json`
 
- The only argument needed is the full path (including filename) of where you want the headers saved. The above example assumes the current working directory in a file named `southwest_headers.json`.
+```
+# no arguments saves the headers to southwest_headers.json in the current directory
+env/bin/python southwest-headers.py
 
- That file can then be used in whatever script to auto check-in. I'll be updating [southwest-checkin](https://github.com/byalextran/southwest-checkin) here shortly to support these headers.
+# include an argument if you want to specify where the headers are saved to
+env/bin/python southwest-headers.py /PATH/TO/FILENAME.json
+```
 
- ## Adding a Cron Job
+The JSON file can then be used in whatever script to auto check-in. I'll be updating [southwest-checkin](https://github.com/byalextran/southwest-checkin) here shortly to support these headers.
 
- For now, I'd recommend running this script as a daily cronjob to ensure headers are refreshed regularly.
+## Adding a Cron Job
 
- Example:
+For now, I'd recommend running this script as a daily cronjob to ensure headers are refreshed regularly.
 
- `0 2 * * *       cd /PATH/TO/southwest-headers/ && env/bin/python southwest-headers.py southwest_headers.json`
+Example:
 
- That would run at 2:00am every day.
+`0 2 * * *       cd /PATH/TO/southwest-headers/ && env/bin/python southwest-headers.py`
+
+That would run at 2:00am every day.
