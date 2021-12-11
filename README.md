@@ -1,7 +1,7 @@
 # southwest-headers
 IYKYK. 😄
 
-I'll update this to be more user friendly later. This all works on Ubuntu 20.04 hosted by DigitalOcean. YMMV.
+Working on Ubuntu 20.04 hosted by DigitalOcean. YMMV.
 
 ## Prerequisites
 
@@ -33,14 +33,24 @@ unzip chromedriver_linux64.zip
 
 Modify ChromeDriver so Southwest doesn't detect Selenium. [Huge hat tip](https://stackoverflow.com/a/52108199).
 
+**Note**: Replace `dog` in the command below with three random alphabetic characters. It has to be exactly three characters.
+
 `perl -pi -e 's/cdc_/dog_/g' chromedriver`
 
 ## Usage
 
- `env/bin/python southwest-headers.py ABCDEF "First Name" "Last Name" $PWD/southwest_headers.json`
+ `env/bin/python southwest-headers.py $PWD/southwest_headers.json`
 
- The last argument is where you want the headers output. The above example assumes the current working directory in a file named `southwest_headers.json`.
+ The only argument needed is the full path (including filename) of where you want the headers saved. The above example assumes the current working directory in a file named `southwest_headers.json`.
 
  That file can then be used in whatever script to auto check-in. I'll be updating [southwest-checkin](https://github.com/byalextran/southwest-checkin) here shortly to support these headers.
 
- It appears that you don't need a valid confirmation number to get headers that work. So I'm thinking this script could be set to run at a set frequency to ensure the headers are ready to go before check-in. (Otherwise, if you incorporate this script before trying to check in you'll lose some precious seconds. 😆)
+ ## Adding a Cron Job
+
+ For now, I'd recommend running this script as a daily cronjob to ensure headers are refreshed regularly.
+
+ Example:
+
+ `0 2 * * *       cd /PATH/TO/southwest-headers/ && env/bin/python southwest-headers.py southwest_headers.json`
+
+ That would run at 2:00am every day.
