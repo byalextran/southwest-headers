@@ -68,8 +68,8 @@ For now, I'd recommend running this script as a daily cronjob to ensure headers 
 
     crontab -e
 
-And then copy/paste the following at the end of the file (making sure to update the path):
+And then copy/paste the following at the end of the file (making sure to update it with the *absolute* path):
 
-    0 2 * * *       cd /PATH/TO/southwest-headers/ && env/bin/python southwest-headers.py
+    0 2 * * *       cd /ABSOLUTE/PATH/TO/southwest-headers/ && env/bin/python southwest-headers.py
 
 That would run at 2:00am every day with the header file found at `/PATH/TO/southwest-headers/southwest_headers.json` (the default filename).
