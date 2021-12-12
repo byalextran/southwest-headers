@@ -47,7 +47,7 @@ time.sleep(10)
 southwest_headers = { "content-type": "application/json" }
 headers = driver.requests[0].headers
 for key in headers:
-    if re.match("x-api-key|x-user-experience-id|x-channel-id|^\w+?-\w$", key, re.I):
+    if re.match("x-api-key|x-user-experience-id|x-channel-id|^[\w-]+?-\w$", key, re.I):
         # only keep the headers we need
         southwest_headers[key] = headers[key]
 
