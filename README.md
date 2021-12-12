@@ -72,4 +72,4 @@ And then copy/paste the following at the end of the file (making sure to update 
 
     0 2 * * *       cd /ABSOLUTE/PATH/TO/southwest-headers/ && env/bin/python southwest-headers.py
 
-That would run at 2:00am every day with the header file found at `/PATH/TO/southwest-headers/southwest_headers.json` (the default filename).
+That would run at 2:00am every day with the file `southwest_headers.json` (the default filename) saved in the `southwest-headers` folder.
