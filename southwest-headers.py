@@ -26,7 +26,15 @@ chrome_options.headless = True
 # the headless option adds HeadlessChrome to the user agent which causes southwest to return invalid headers. so need to set a user agent that appears like a normal web browser.
 chrome_options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36')
 
-driver = webdriver.Chrome(os.getcwd() + "/chromedriver", options=chrome_options)
+# fixes issue when user runs as root
+# https://stackoverflow.com/questions/50642308/webdriverexception-unknown-error-devtoolsactiveport-file-doesnt-exist-while-t
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+
+# fixes issue if user doesn't have write permissions to default storage location
+seleniumwire_options = { 'request_storage': 'memory' }
+
+driver = webdriver.Chrome(os.getcwd() + "/chromedriver", options=chrome_options, seleniumwire_options=seleniumwire_options)
 driver.scopes = [ "page\/check-in" ]    # only capture request URLs matching this regex
 
 driver.get("https://mobile.southwest.com/check-in")
