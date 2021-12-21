@@ -8,8 +8,8 @@ import os
 import random
 import string
 import sys
+import seleniumwire.undetected_chromedriver.v2 as uc
 from pathlib import Path
-from seleniumwire import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -20,7 +20,7 @@ first_name = ''.join(random.choices(string.ascii_lowercase, k=random.randrange(4
 last_name = ''.join(random.choices(string.ascii_lowercase, k=random.randrange(4,10))).capitalize()
 output_file = sys.argv[1] if len(sys.argv) > 1 else "southwest_headers.json"
 
-chrome_options = Options()
+chrome_options = uc.ChromeOptions()
 chrome_options.headless = True
 
 # the headless option adds HeadlessChrome to the user agent which causes southwest to return invalid headers. so need to set a user agent that appears like a normal web browser.
@@ -34,7 +34,7 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 # fixes issue if user doesn't have write permissions to default storage location
 seleniumwire_options = { 'request_storage': 'memory' }
 
-driver = webdriver.Chrome(os.getcwd() + "/chromedriver", options=chrome_options, seleniumwire_options=seleniumwire_options)
+driver = uc.Chrome(options=chrome_options, seleniumwire_options=seleniumwire_options, version_main=96)
 driver.scopes = [ "page\/check-in" ]    # only capture request URLs matching this regex
 
 driver.get("https://mobile.southwest.com/check-in")

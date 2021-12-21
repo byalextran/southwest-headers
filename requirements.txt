@@ -18,12 +18,12 @@ pyOpenSSL==21.0.0
 pyparsing==3.0.6
 PySocks==1.7.1
 selenium==4.1.0
-selenium-wire==4.5.6
 six==1.16.0
 sniffio==1.2.0
 sortedcontainers==2.4.0
 trio==0.19.0
 trio-websocket==0.9.2
+undetected-chromedriver==3.0.6
 urllib3==1.26.7
 wsproto==1.0.0
 zstandard==0.16.0
