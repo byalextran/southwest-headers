@@ -10,7 +10,7 @@ import string
 import sys
 import seleniumwire.undetected_chromedriver.v2 as uc
 from pathlib import Path
-from selenium.webdriver.chrome.options import Options
+import seleniumwire.undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -20,21 +20,7 @@ first_name = ''.join(random.choices(string.ascii_lowercase, k=random.randrange(4
 last_name = ''.join(random.choices(string.ascii_lowercase, k=random.randrange(4,10))).capitalize()
 output_file = sys.argv[1] if len(sys.argv) > 1 else "southwest_headers.json"
 
-chrome_options = uc.ChromeOptions()
-chrome_options.headless = True
-
-# the headless option adds HeadlessChrome to the user agent which causes southwest to return invalid headers. so need to set a user agent that appears like a normal web browser.
-chrome_options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36')
-
-# fixes issue when user runs as root
-# https://stackoverflow.com/questions/50642308/webdriverexception-unknown-error-devtoolsactiveport-file-doesnt-exist-while-t
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-dev-shm-usage')
-
-# fixes issue if user doesn't have write permissions to default storage location
-seleniumwire_options = { 'request_storage': 'memory' }
-
-driver = uc.Chrome(options=chrome_options, seleniumwire_options=seleniumwire_options, version_main=96)
+driver = uc.Chrome(headless = True)
 driver.scopes = [ "page\/check-in" ]    # only capture request URLs matching this regex
 
 driver.get("https://mobile.southwest.com/check-in")
@@ -53,9 +39,12 @@ time.sleep(10)
 
 # content-type is a required header but not included in the request headers so we'll manually add it here.
 southwest_headers = { "content-type": "application/json" }
+
 headers = driver.requests[0].headers
 for key in headers:
-    if re.match("x-api-key|x-user-experience-id|x-channel-id|^[\w-]+?-\w$", key, re.I):
+    # southwest_headers[key] = headers[key]
+
+    if re.match("x-api-key|x-user-experience-id|x-channel-id|^[\w]+?-\w{1,2}$", key, re.I):
         # only keep the headers we need
         southwest_headers[key] = headers[key]
 
