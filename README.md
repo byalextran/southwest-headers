@@ -25,26 +25,10 @@ Working on Ubuntu 20.04 hosted by DigitalOcean. YMMV.
 
     env/bin/pip install -r requirements.txt
 
-### Install ChromeDriver
-
-Figure out what version of Chrome you've installed.
-
-    google-chrome --version
-
-[Download the same version of ChromeDriver](https://chromedriver.chromium.org/downloads) into the `southwest-headers` directory and unzip it.
-
-Example:
-
-    wget https://chromedriver.storage.googleapis.com/96.0.4664.45/chromedriver_linux64.zip
-    unzip chromedriver_linux64.zip
-
-### Modify ChromeDriver
-
-This is necessary so Southwest doesn't detect Selenium and provide invalid headers. [Huge hat tip](https://stackoverflow.com/a/52108199).
-
-**Note**: Replace `dog` in the command below with *exactly* three random alphabetic characters.
-
-    perl -pi -e 's/cdc_/dog_/g' chromedriver
+### Updating Southwest Headers    
+    cd southwest-headers
+    git pull
+    env/bin/pip install -r requirements.txt
 
 ## Usage
 
