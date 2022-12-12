@@ -4,7 +4,7 @@ blinker==1.4
 Brotli==1.0.9
 certifi==2021.10.8
 cffi==1.15.0
-cryptography==36.0.0
+cryptography==38.0.4
 h11==0.12.0
 h2==4.1.0
 hpack==4.0.0
@@ -14,11 +14,11 @@ kaitaistruct==0.9
 outcome==1.1.0
 pyasn1==0.4.8
 pycparser==2.21
-pyOpenSSL==21.0.0
+pyOpenSSL==22.1.0
 pyparsing==3.0.6
 PySocks==1.7.1
-selenium==4.1.0
-selenium-wire==4.5.6
+selenium==4.7.2
+selenium-wire==5.1.0
 six==1.16.0
 sniffio==1.2.0
 sortedcontainers==2.4.0
@@ -27,3 +27,4 @@ trio-websocket==0.9.2
 urllib3==1.26.7
 wsproto==1.0.0
 zstandard==0.16.0
+undetected-chromedriver==3.1.7
