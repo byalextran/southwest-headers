@@ -24,7 +24,7 @@ chrome_options = Options()
 chrome_options.headless = True
 
 # the headless option adds HeadlessChrome to the user agent which causes southwest to return invalid headers. so need to set a user agent that appears like a normal web browser.
-chrome_options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36')
+chrome_options.add_argument('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36')
 
 # fixes issue when user runs as root
 # https://stackoverflow.com/questions/50642308/webdriverexception-unknown-error-devtoolsactiveport-file-doesnt-exist-while-t
@@ -55,7 +55,9 @@ time.sleep(10)
 southwest_headers = { "content-type": "application/json" }
 headers = driver.requests[0].headers
 for key in headers:
-    if re.match("x-api-key|x-user-experience-id|x-channel-id|^[\w-]+?-\w$", key, re.I):
+    # southwest_headers[key] = headers[key]
+
+    if re.match("x-api-key|x-user-experience-id|x-channel-id|^[\w]+?-\w{1,2}$", key, re.I):
         # only keep the headers we need
         southwest_headers[key] = headers[key]
 
