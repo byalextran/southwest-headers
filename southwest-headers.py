@@ -8,9 +8,8 @@ import os
 import random
 import string
 import sys
+import seleniumwire.undetected_chromedriver.v2 as uc
 from pathlib import Path
-from seleniumwire import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
