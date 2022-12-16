@@ -15,6 +15,8 @@ Working on Ubuntu 20.04 hosted by DigitalOcean. YMMV.
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo dpkg -i google-chrome-stable_current_amd64.deb
 
+Note: Tested and working with v108. v96 _doesn't_ work, so please update Chrome if using a version older than v108.
+
 ### Install Southwest Headers
 
     git clone https://github.com/byalextran/southwest-headers
@@ -28,6 +30,8 @@ Working on Ubuntu 20.04 hosted by DigitalOcean. YMMV.
 ### Updating Southwest Headers    
     cd southwest-headers
     git pull
+    rm -rf env
+    virtualenv env
     env/bin/pip install -r requirements.txt
 
 ## Usage
