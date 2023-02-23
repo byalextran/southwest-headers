@@ -3,7 +3,7 @@ IYKYK. 😄
 
 Working on Ubuntu 20.04 hosted by DigitalOcean. YMMV.
 
-## February 2022 Update
+## ⚠️ February 2023 Update ⚠️
 It appears the latest versions of Chrome (110) and undetected-chromedriver (3.4.6) produce invalid header files. [Read this thread for a workaround](https://github.com/byalextran/southwest-headers/issues/6).
 
 ## Prerequisites
