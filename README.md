@@ -15,10 +15,10 @@ It appears the latest versions of Chrome (110) and undetected-chromedriver (3.4.
 
 ### Install Google Chrome
 
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_108.0.5359.124-1_amd64.deb
+    sudo dpkg -i google-chrome-stable_108.0.5359.124-1_amd64.deb
 
-Note: Tested and working with v108. v96 _doesn't_ work, so please update Chrome if using a version older than v108.
+Note: Tested and working with v108. v96 and v110 both don't work, so please make sure Chrome is running on a version that's not too old or new.
 
 ### Install Southwest Headers
 
